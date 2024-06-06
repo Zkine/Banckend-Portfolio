@@ -15,15 +15,15 @@ mongoose
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
-  // app.use((req, res, next) => {
-  //   res.setHeader('Access-Control-Allow-Origin', '*');
-  //   res.setHeader('Access-Control-Allow-Methods', 'POST');
-  //   res.setHeader(
-  //     'Access-Control-Allow-Headers',
-  //     'Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'
-  //   );
-  //   next();
-  // });
+  app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'
+    );
+    next();
+  });
 
   app.options("*", (req, res) => {
     console.log("preflight");
