@@ -1,7 +1,7 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,28 +25,22 @@ mongoose
     next();
   });
 
+  app.options("*", (req, res) => {
+    console.log("preflight");
+    console.log(req.headers["access-control-request-method"]);
+    console.log(eq.headers);
   
-  // const router = express.Router();
-const Message = require("./model/message");
-
-app.post("/api/message", (req, res) => {
-  const message = new Message({
-    ...req.body,
+    if (req.headers.origin === 'http://localhost:5173')  {
+      console.log("pass");
+      return res.status(204).send();
+    } else {
+      console.log("fail");
+    }
   });
 
-  message
-    .save()
-    .then(() => {
-      res.status(201).json({ message: "Objet enregistré !" });
-    })
-    .catch((error) => {
-      res.status(400).json({ error });
-    });
-});
 
+const messageRoute = require("./route/message");
 
-// const messageRoute = require("./route/message");
-
-// app.use("/api/message", messageRoute);
+app.use("/api/message", messageRoute);
 
 module.exports = app;
