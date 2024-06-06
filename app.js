@@ -1,4 +1,5 @@
 const express = require("express");
+const messageRoute = require("./route/message");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -27,7 +28,6 @@ mongoose
 
 console.log("yes")
 
-const messageRoute = require("./route/message");
 
 app.use("/api/message", messageRoute);
 
