@@ -16,6 +16,7 @@ mongoose
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
+
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -26,8 +27,16 @@ mongoose
     next();
   });
 
-console.log("yes")
-
+  app.options("*", (req, res) => {
+    console.log(req.headers);
+    if (
+      req.headers.origin === 'http://localhost:5173' 
+    ) {
+      console.log("pass");
+      return res.status(204).send();
+    } else {
+      console.log("fail");
+    }});
 
 app.use("/api/message", messageRoute);
 
