@@ -28,7 +28,7 @@ mongoose
   app.options("*", (req, res) => {
     console.log("preflight");
     console.log(req.headers["access-control-request-method"]);
-    console.log(eq.headers);
+    console.log(req.headers);
   
     if (req.headers.origin === 'http://localhost:5173')  {
       console.log("pass");
