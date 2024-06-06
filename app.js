@@ -26,10 +26,27 @@ mongoose
   });
 
   
+  // const router = express.Router();
+const Message = require("./model/message");
+
+app.post("/api/message", (req, res) => {
+  const message = new Message({
+    ...req.body,
+  });
+
+  message
+    .save()
+    .then(() => {
+      res.status(201).json({ message: "Objet enregistré !" });
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
+});
 
 
-const messageRoute = require("./route/message");
+// const messageRoute = require("./route/message");
 
-app.use("/api/message", messageRoute);
+// app.use("/api/message", messageRoute);
 
 module.exports = app;
