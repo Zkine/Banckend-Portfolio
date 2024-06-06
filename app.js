@@ -25,7 +25,7 @@ mongoose
     next();
   });
 
-
+console.log("yes")
 
 const messageRoute = require("./route/message");
 
