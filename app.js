@@ -12,7 +12,7 @@ mongoose
   .catch(() => console.log("Connexion à MongoDB échouée !"));
 
   app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader(
       'Access-Control-Allow-Headers',
@@ -20,18 +20,6 @@ mongoose
     );
     next();
   });
-
-app.options("*", (req, res) => {
-  console.log("preflight");
-  console.log(req.headers);
-
-  if (req.headers.origin === 'http://localhost:5173')  {
-    console.log("pass");
-    return res.status(204).send();
-  } else {
-    console.log("fail");
-  }
-});
 
 const messageRoute = require("./route/message");
 
