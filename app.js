@@ -25,18 +25,6 @@ mongoose
     next();
   });
 
-  app.options("*", (req, res) => {
-    console.log("preflight");
-    console.log(req.headers["access-control-request-method"]);
-    console.log(req.headers);
-  
-    if (req.headers.origin === 'http://localhost:5173')  {
-      console.log("pass");
-      return res.status(204).send();
-    } else {
-      console.log("fail");
-    }
-  });
 
 
 const messageRoute = require("./route/message");
