@@ -15,7 +15,7 @@ mongoose
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://portfolio-philippejaymes.fr/"
+    "https://portfolio-philippejaymes.fr"
   );
   res.setHeader("Access-Control-Allow-Methods", "POST");
   res.setHeader(
